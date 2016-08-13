@@ -65,17 +65,13 @@ namespace libgtin
 				{
 					return internalBarcode.Substring(Type.ProductIDIndex, Type.ProductIDLength);
 				}
-				else
+
+				if (Type.PackingOrder == EmbeddedValuePackingOrder.End)
 				{
-					if (Type.PackingOrder == EmbeddedValuePackingOrder.End)
-					{
-						return internalBarcode.Substring(Type.ProductIDIndex, Type.ProductIDLength + Type.EmbeddedValueLength);
-					}
-					else
-					{
-						return internalBarcode.Substring(Type.EmbeddedValueIndex, Type.EmbeddedValueLength + Type.ProductIDLength);
-					}
+					return internalBarcode.Substring(Type.ProductIDIndex, Type.ProductIDLength + Type.EmbeddedValueLength);
 				}
+
+				return internalBarcode.Substring(Type.EmbeddedValueIndex, Type.EmbeddedValueLength + Type.ProductIDLength);
 			}
 		}
 
@@ -109,6 +105,24 @@ namespace libgtin
 			get
 			{
 				return Type.SupportsEmbeddedValue && Type.EmbeddedWeightIdentifiers.Contains(this.AreaID);
+			}
+		}
+
+		/// <summary>
+		/// Gets the type of embedded value in this barcode.
+		/// </summary>
+		public EmbeddedValueType EmbeddedType
+		{
+			get
+			{
+				if (HasEmbeddedPrice || HasEmbeddedWeight)
+				{
+					string embeddedValueType = this.internalBarcode.Substring(1, 1);
+
+					return (EmbeddedValueType)int.Parse(embeddedValueType);
+				}
+
+				return EmbeddedValueType.None;
 			}
 		}
 

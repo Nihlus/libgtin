@@ -140,9 +140,9 @@ namespace libgtin.Validation.Algorithms.Modulo
 				}
 
 				int digit = int.Parse(barcodeWithoutChecksum[i].ToString());
-				sum += (digit * weight);
+				sum += digit * weight;
 			}
-			return 10 - (sum % 10);
+			return 10 - sum % 10;
 		}
 	}
 }

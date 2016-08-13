@@ -21,6 +21,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace libgtin.Types
@@ -98,8 +99,8 @@ namespace libgtin.Types
 
 				if (barcodeType.SupportsEmbeddedValue)
 				{
-					string areaID = barcode.Substring(barcodeType.AreaIDIndex, barcodeType.AreaIDLength);
-					if (barcodeType.EmbeddedPriceIdentifiers.Contains(areaID) || barcodeType.EmbeddedWeightIdentifiers.Contains(areaID))
+					string embeddedValueID = barcode.Substring(barcodeType.AreaIDIndex, barcodeType.AreaIDLength - 1);
+					if (barcodeType.EmbeddedPriceIdentifiers.Contains(embeddedValueID) || barcodeType.EmbeddedWeightIdentifiers.Contains(embeddedValueID))
 					{
 						int embeddedValue = int.Parse(barcode.Substring(barcodeType.EmbeddedValueIndex, barcodeType.EmbeddedValueLength));
 						if (embeddedValue > barcodeType.MaxEmbeddedValue || embeddedValue < 0)

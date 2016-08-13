@@ -19,7 +19,6 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
 using System.Collections.Generic;
 using libgtin.Validation.Algorithms;
 using libgtin.Validation.Algorithms.Modulo;
@@ -35,11 +34,15 @@ namespace libgtin.Types.EAN
 
 		public override List<string> EmbeddedPriceIdentifiers => new List<string>
 		{
-			"208"
+			"20",
+			"21",
+			"22"
 		};
 		public override List<string> EmbeddedWeightIdentifiers => new List<string>
 		{
-			"234"
+			"23",
+			"24",
+			"25"
 		};
 
 		public override int MaxEmbeddedValue => 9999;
