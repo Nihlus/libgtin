@@ -19,7 +19,6 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.Collections.Generic;
 using libgtin.Validation.Algorithms;
 using libgtin.Validation.Algorithms.Modulo;
 
@@ -29,24 +28,9 @@ namespace libgtin.Types.EAN
 	{
 		public override string Name => "EAN8";
 		public override int Length => 8;
-		public override bool SupportsEmbeddedValue => false;
-		public override EmbeddedValuePackingOrder PackingOrder => EmbeddedValuePackingOrder.End;
 
-		public override List<string> EmbeddedPriceIdentifiers => new List<string>
-		{
-
-		};
-		public override List<string> EmbeddedWeightIdentifiers => new List<string>
-		{
-
-		};
-
-		public override int MaxEmbeddedValue => 0;
-
-		public override int ProductIDLength => 5;
-		public override int ProductIDIndex => 3;
-		public override int EmbeddedValueLength => 0;
-		public override int EmbeddedValueIndex => 0;
+		public override int ProductIDLength => 6;
+		public override int ProductIDIndex => 2;
 
 		public override BarcodeChecksumAlgorithm Algorithm => Modulo10.Instance;
 	}

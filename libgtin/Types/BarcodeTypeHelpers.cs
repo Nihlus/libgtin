@@ -112,6 +112,7 @@ namespace libgtin.Types
 
 				return barcodeType;
 			}
+
 			return null;
 		}
 	}

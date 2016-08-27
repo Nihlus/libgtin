@@ -20,7 +20,6 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.IO;
 using System.Linq;
 using libgtin.Types;
 
@@ -137,7 +136,7 @@ namespace libgtin
 		/// <returns>
 		/// A <see cref="Barcode"/> object.
 		/// </returns>
-		/// <param name="barcode">A barcode. The barcode must be valid.</param>
+		/// <param name="barcode">A barcode. The barcode may not contain non-digit characters.</param>
 		/// <exception cref="ArgumentException">
 		/// Will be thrown if the <paramref name="barcode"/> value is not recognized as a valid barcode.
 		/// Will also be thrown if the <paramref name="barcode"/> string contains any non-numerical characters.
@@ -165,7 +164,7 @@ namespace libgtin
 		/// <returns>
 		/// A <see cref="Barcode"/> object.
 		/// </returns>
-		/// <param name="barcode">A barcode in numerical format. The barcode must be valid.</param>
+		/// <param name="barcode">A barcode in numerical format. The barcode may not contain non-digit characters.</param>
 		/// <exception cref="ArgumentOutOfRangeException">
 		/// Will be thrown if the <paramref name="barcode"/> value is less than zero.
 		/// </exception>
@@ -204,16 +203,7 @@ namespace libgtin
 			}
 
 			string internalEmbeddedPrice = internalBarcode.Substring(Type.EmbeddedValueIndex, Type.EmbeddedValueLength);
-
-			int embeddedPrice;
-			if (int.TryParse(internalEmbeddedPrice, out embeddedPrice))
-			{
-				return embeddedPrice;
-			}
-			else
-			{
-				throw new InvalidDataException("Failed to parse the embedded price to an integer. The barcode may be corrupt.");
-			}
+			return int.Parse(internalEmbeddedPrice);
 		}
 
 		/// <summary>
@@ -231,16 +221,7 @@ namespace libgtin
 			}
 
 			string internalEmbeddedWeight = internalBarcode.Substring(Type.EmbeddedValueIndex, Type.EmbeddedValueLength);
-
-			int embeddedWeight;
-			if (int.TryParse(internalEmbeddedWeight, out embeddedWeight))
-			{
-				return embeddedWeight;
-			}
-			else
-			{
-				throw new InvalidDataException("Failed to parse the embedded weight to an integer. The barcode may be corrupt.");
-			}
+			return int.Parse(internalEmbeddedWeight);
 		}
 	}
 }

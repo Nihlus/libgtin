@@ -47,8 +47,8 @@ namespace libgtin.Types.EAN
 
 		public override int MaxEmbeddedValue => 9999;
 
-		public override int ProductIDLength => 5;
-		public override int ProductIDIndex => 3;
+		public override int ProductIDLength => 6;
+		public override int ProductIDIndex => 2;
 		public override int EmbeddedValueLength => 4;
 		public override int EmbeddedValueIndex => 8;
 

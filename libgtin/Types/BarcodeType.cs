@@ -43,32 +43,32 @@ namespace libgtin.Types
 		/// <summary>
 		/// Whether or not this barcode type supports embedded values.
 		/// </summary>
-		public abstract bool SupportsEmbeddedValue { get; }
+		public virtual bool SupportsEmbeddedValue => false;
 
 		/// <summary>
 		/// The order the embedded value and product ID are packed (if embedded values are supported. Ignored otherwise.)
 		/// </summary>
-		public abstract EmbeddedValuePackingOrder PackingOrder { get; }
+		public virtual EmbeddedValuePackingOrder PackingOrder => EmbeddedValuePackingOrder.End;
 
 		/// <summary>
 		/// A set of AreaIDs used to identify barcodes with embedded prices.
 		/// </summary>
-		public abstract List<string> EmbeddedPriceIdentifiers { get; }
+		public virtual List<string> EmbeddedPriceIdentifiers => new List<string>();
 
 		/// <summary>
 		/// A set of AreaIDs used to identify barcodes with embedded weights.
 		/// </summary>
-		public abstract List<string> EmbeddedWeightIdentifiers { get; }
+		public virtual List<string> EmbeddedWeightIdentifiers => new List<string>();
 
 		/// <summary>
 		/// The maximum possible value an embedded value can hold.
 		/// </summary>
-		public abstract int MaxEmbeddedValue { get; }
+		public virtual int MaxEmbeddedValue => 0;
 
 		/// <summary>
 		/// The length of the AreaID component.
 		/// </summary>
-		public virtual int AreaIDLength => 3;
+		public virtual int AreaIDLength => 2;
 
 		/// <summary>
 		/// The index in the barcode where the AreaID component begins.
@@ -88,12 +88,12 @@ namespace libgtin.Types
 		/// <summary>
 		/// The length of the EmbeddedValue component.
 		/// </summary>
-		public abstract int EmbeddedValueLength { get; }
+		public virtual int EmbeddedValueLength => 0;
 
 		/// <summary>
 		/// The index in the barcode where the EmbeddedValue component begins.
 		/// </summary>
-		public abstract int EmbeddedValueIndex { get; }
+		public virtual int EmbeddedValueIndex => 0;
 
 		/// <summary>
 		/// The length of the Checksum component.
